@@ -1,0 +1,65 @@
+#faculty-details {
+  margin: -7.5rem auto 0 auto;
+  padding: 0 10rem;
+  max-width: 1600px;
+  display: flex;
+  position: relative;
+  z-index: 100 !important;
+}
+
+#faculty-details #header {
+  margin: 9.5rem 0 0 4rem;
+}
+
+#faculty-details #header h1 {
+  font-size: 5rem;
+  line-height: 5rem;
+}
+
+#faculty-details #header h2 {
+  font-size: 2rem;
+}
+
+img#faculty-picture {
+  width: 300px;
+  border: 1rem #fff solid;
+}
+
+#bio {
+  margin-top: 2.5rem;
+}
+
+#bio #location {
+  color: #999;
+  font-style: italic;
+}
+
+#bio #phone,
+#bio #email {
+  font-size: 1.7rem;
+  display: flex;
+  color: #ccc;
+  text-decoration: none;
+}
+
+#bio #phone {
+  margin: 2.5rem 0 1rem 0;
+}
+
+#bio #phone i,
+#bio #email i {
+  margin-right: 0.45rem;
+}
+
+#bio .header1 {
+  font-size: 2.25rem !important;
+  font-weight: 700;
+}
+
+.wide-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0px 25px;
+}
+
+/* @media min-width() */

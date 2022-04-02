@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Programs Search Page</title>
+
+    <link href="skeleton.css" rel="stylesheet" />
+    <link href="fontawesome.css" rel="stylesheet" />
+    <link rel="stylesheet" href="filterstyles.css" />
+  </head>
+  <body>
+    <div class="wide-container">
+      <div class="program-search-area">
+        <form class="skeleton-form">
+          <div class="flex-container">
+            <div class="flex-option-1">
+              <input
+                class="u-full-width"
+                type="email"
+                placeholder="Filter By Keyword"
+                id="filter-keyword"
+              />
+            </div>
+            <div class="flex-option-2">
+              <select class="u-full-width" id="filter-interest">
+                <option value="">Academic Interest</option>
+                <option value="Arts, Design & Communication">
+                  Arts, Design & Communication
+                </option>
+                <option value="Biblical Studies, Philosophy & Ministry">
+                  Biblical Studies, Philosophy & Ministry
+                </option>
+                <option value="Business & Sport Management">
+                  Business & Sport Management
+                </option>
+                <option value="Computer Science & Technology">
+                  Computer Science & Technology
+                </option>
+                <option value="Education & Teaching">
+                  Education & Teaching
+                </option>
+                <option value="Nursing, Healthcare & Life Sciences">
+                  Nursing, Healthcare & Life Sciences
+                </option>
+                <option value="Political Science, History & Languages">
+                  Political Science, History & Languages
+                </option>
+                <option value="Psychology & Social Services">
+                  Psychology & Social Services
+                </option>
+                <option value="Science, Engineering & Mathematics">
+                  Science, Engineering & Mathematics
+                </option>
+              </select>
+            </div>
+            <div class="flex-option-3">
+              <select class="u-full-width" id="filter-program">
+                <option value="">Program Type</option>
+                <option value="major">Undergraduate Majors</option>
+                <option value="minor">Undergraduate Minors</option>
+                <option value="graduate">Graduate Programs</option>
+              </select>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="flex-container results"></div>
+    </div>
+
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"
+      type="text/javascript"
+    ></script>
+  </body>
+</html>

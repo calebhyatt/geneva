@@ -1,0 +1,73 @@
+/* Local */
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+.hero {
+  height: 50vh;
+  width: 100vw;
+  max-width: 100vw;
+  background-image: url(./assets/hero-backdrop.jpg);
+  background-position: center;
+  background-size: cover;
+}
+
+/* CMS */
+
+#faculty-details {
+  margin-top: -7.5rem;
+  padding: 0 10rem;
+  display: flex;
+  position: relative;
+  z-index: 100 !important;
+}
+
+#faculty-details #header {
+  margin: 9.5rem 0 0 4rem;
+}
+
+#faculty-details #header h1 {
+  font-size: 5rem;
+}
+
+#faculty-details #header h2 {
+  font-size: 2rem;
+}
+
+img#faculty-picture {
+  width: 300px;
+  border: 1rem #fff solid;
+}
+
+#bio {
+  margin-top: 2.5rem;
+}
+
+#bio #phone,
+#bio #email {
+  font-size: 1.7rem;
+  display: flex;
+  color: #ccc;
+  text-decoration: none;
+}
+
+#bio #email {
+  margin-top: 1rem;
+}
+
+#bio #phone i,
+#bio #email i {
+  margin-right: 0.45rem;
+}
+
+#bio .header1 {
+  font-size: 2.25rem !important;
+  font-weight: 700;
+}

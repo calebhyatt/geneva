@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="filter-styles.css" />
+    <link rel="stylesheet" href="fontawesome.css" />
+    <link rel="stylesheet" href="skeleton.css" />
+
+    <style>
+      .title-header {
+        width: 100%;
+        text-align: center;
+      }
+    </style>
+
+    <title>Faculty Search 2.0</title>
+  </head>
+  <body>
+    <link href="_files/css/programs/filterstyles.css" rel="stylesheet" />
+    <div class="wide-container">
+      <div class="program-search-area">
+        <form class="skeleton-form">
+          <div class="flex-container">
+            <div class="flex-option-1">
+              <input
+                class="u-full-width"
+                id="filter-keyword"
+                placeholder="Filter By Keyword"
+                type="email"
+              />
+            </div>
+            <div class="flex-option-2">
+              <select class="u-full-width" id="filter-program">
+                <option selected="selected" value="">Select by Program</option>
+                <option value="accounting">Accounting</option>
+                <option value="accountscholars">Accounting Scholars 3+1</option>
+                <option value="allied">Allied Health Programs</option>
+                <option value="applied">Applied Mathematics</option>
+                <option value="aviationbus">Aviation Business</option>
+                <option value="aviationmis">Aviation Missions</option>
+                <option value="bio">Biology</option>
+                <option value="biochem">Biochemistry</option>
+                <option value="biomedeng">Biomedical Engineering</option>
+                <option value="biopsych">Biopsychology</option>
+                <option value="busadmin">Business Administration</option>
+                <option value="chem">Chemistry</option>
+                <option value="chemeng">Chemical Engineering</option>
+                <option value="cis">Computer Information Systems</option>
+                <option value="civeng">Civil Engineering</option>
+                <option value="comm">Communication</option>
+                <option value="commdes">Communication Design</option>
+                <option value="commdis">Communication Disorders</option>
+                <option value="commdev">Community Development</option>
+                <option value="compeng">Computer Engineering</option>
+                <option value="compsci">Computer Science</option>
+                <option value="compscicyber">
+                  Computer Science / Cybersecurity 3+1
+                </option>
+                <option value="criminal">Criminal Justice</option>
+                <option value="earlyed">Early Education</option>
+                <option value="eleceng">Electrical Engineering</option>
+                <option value="eng">Engineering</option>
+                <option value="englit">English Lit</option>
+                <option value="engwri">English - Writing</option>
+                <option value="enveng">Environmental Engineering</option>
+                <option value="envsci">Environmental Science</option>
+                <option value="finance">Finance</option>
+                <option value="history">History</option>
+                <option value="intereng">Interdisciplinary Engineering</option>
+                <option value="management">Management</option>
+                <option value="marketing">Marketing</option>
+                <option value="med">M.Ed. in Curriculum and Instruction</option>
+                <option value="mba">
+                  Master's of Business Administration (MBA)
+                </option>
+                <option value="mcounseling">Master's of Counseling</option>
+                <option value="mcyber">Master's in Cybersecurity</option>
+                <option value="mhighed">Master's in Higher Education</option>
+                <option value="mleader">
+                  Master of Science in Leadership Studies
+                </option>
+                <option value="mecheng">Mechanical Engineering</option>
+                <option value="mided">Middle Education (4-8)</option>
+                <option value="missions">Missions</option>
+                <option value="music">Music</option>
+                <option value="musicbus">Music Business</option>
+                <option value="musiced">Music Education (K-12)</option>
+                <option value="nursing">Nursing (RN-BSN)</option>
+                <option value="philosophy">Philosophy</option>
+                <option value="physics">Physics</option>
+                <option value="polisci">Political Science</option>
+                <option value="psych">Psychology</option>
+                <option value="seconded">Secondary Education (7-12)</option>
+                <option value="social">Social Services</option>
+                <option value="sociology">Sociology</option>
+                <option value="sport">Sports Management</option>
+                <option value="student">Student Ministries</option>
+              </select>
+            </div>
+            <div class="flex-option-2">
+              <select class="u-full-width" id="filter-degree">
+                <option selected="selected" value="">
+                  Select by Department
+                </option>
+                <option value="adultdegree">Adult Degree Programs</option>
+                <option value="bible">
+                  Bible, Christian Ministries &amp; Philosophy
+                </option>
+                <option value="biology">Biology</option>
+                <option value="business">
+                  Business, Management &amp; Accounting
+                </option>
+                <option value="chemistry">Chemistry, Math &amp; Physics</option>
+                <option value="communication">Communication</option>
+                <option value="compsci">
+                  Computer Science &amp; Cybersecurity
+                </option>
+                <option value="education">Education</option>
+                <option value="engineering">Engineering</option>
+                <option value="english">English</option>
+                <option value="polisci">
+                  History, Political Science &amp; Sociology
+                </option>
+                <option value="library">Library</option>
+                <option value="mba">Masters in Business Administration</option>
+                <option value="counseling">Masters in Counseling</option>
+                <option value="highered">Masters in Higher Education</option>
+                <option value="leadership">
+                  Masters in Leadership Studies
+                </option>
+                <option value="music">Music</option>
+                <option value="nursing">Nursing</option>
+                <option value="psych">
+                  Psychology, Counseling &amp; Human Services
+                </option>
+              </select>
+            </div>
+          </div>
+        </form>
+      </div>
+      <ul
+        class="flex-list-container-faculty justify-space-between"
+        id="results"
+      ></ul>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

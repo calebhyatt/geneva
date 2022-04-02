@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;1,400;1,700&family=Urbanist:wght@800&display=swap');
+
+.wide-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0px 40px;
+}
+
+.card {
+  background: white;
+  transition: all 0.5s;
+  border-radius: 3px;
+  color: rgb(155, 155, 155);
+  border: none;
+  margin-bottom: 1.7%;
+  font-family: poppins;
+  box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.05);
+}
+
+.card:hover {
+  box-shadow: 0 1px 20px 0 rgba(0, 0, 0, 0.3);
+  /*background-color:#474747;*/
+}
+
+.card p {
+  line-height: 1.4em;
+  font-size: 14px;
+}
+
+.card-info {
+  position: relative;
+  padding: 15px;
+  width: 100%;
+}
+
+.card img {
+  margin: 0px;
+  padding: 0px;
+  display: block;
+  width: 100%;
+}
+
+.card img {
+  transition: filter 0.5s ease-in-out;
+  -webkit-filter: grayscale(100%); /* Ch 23+, Saf 6.0+, BB 10.0+ */
+  filter: grayscale(100%); /* FF 35+ */
+}
+
+.card img:hover,
+.card-info .more_link:hover ~ img {
+  -webkit-filter: grayscale(0%); /* Ch 23+, Saf 6.0+, BB 10.0+ */
+  filter: grayscale(0%); /* FF 35+ */
+}
+
+.card-info .more_link:hover ~ h2 {
+  color: #3a3a3a;
+}
+
+.card h2 {
+  transition: color 0.5s;
+  font-family: poppins;
+  color: #bb9337;
+  margin-top: 12px;
+  margin-bottom: 5px;
+  margin-top: 20px !important;
+  line-height: 30px !important;
+  margin-bottom: 15px;
+}
+
+.card a {
+  transition: color 0.5s;
+  color: #bb9337;
+  text-decoration: none;
+}
+.card a:hover {
+  color: #377f94;
+  text-decoration: none;
+}
+
+ul.flex-container {
+  list-style-type: none;
+}
+
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+/*.flex-container::after {
+        content: "";
+        flex: auto;
+      }*/
+.flex-item {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  flex-basis: 98%;
+  margin-bottom: 15px;
+}
+
+.flex-option-1 {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  flex-basis: 100%;
+  margin-bottom: 15px;
+}
+.flex-option-2 {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  flex-basis: 100%;
+  margin-bottom: 15px;
+}
+.flex-option-3 {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  flex-basis: 100%;
+  margin-bottom: 15px;
+}
+
+.card-info .more_link {
+  position: absolute;
+  display: block;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-indent: -9999px;
+  z-index: 1000;
+}
+
+.ico-circ {
+  display: inline;
+  font-family: 'Urbanist';
+  font-size: 14px;
+  border: 2px solid #000000;
+  border-radius: 10%;
+  width: 15px;
+  height: 15px;
+  padding: 3px;
+  color: #000000;
+  text-align: center;
+  margin-right: 10px;
+}
+
+/* Bigger than 550 */
+@media (min-width: 550px) {
+  .flex-item {
+    flex-basis: 49%;
+  }
+}
+
+/* Bigger than 750 */
+@media (min-width: 750px) {
+  .flex-item {
+    flex-basis: 32%;
+  }
+  .flex-option-1 {
+    flex-basis: 31%;
+  }
+  .flex-option-2,
+  .flex-option-3 {
+    flex-basis: 31%;
+  }
+}
+
+/* Bigger than 1000 */
+@media (min-width: 1000px) {
+  .flex-item {
+    flex-basis: 24%;
+  }
+}
+
+.program-search-area {
+  display: block;
+  position: relative;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+/*drop select */
+input {
+  font-family: poppins;
+  font-size: 1em;
+}
+select {
+  font-size: 1em;
+  padding: 40px;
+  box-sizing: border-box;
+  font-family: poppins;
+}
+select option:checked,
+option:hover {
+  color: white;
+  background: #daaf48 repeat !important; /* url('data:image/gif;base64,R0lGO...') */
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+
+/* "Nothing Found" Header */
+.nothing-found {
+  display: flex;
+  width: 100vw;
+}
+
+.nothing-found h1 {
+  margin: auto;
+  font-family: poppins;
+}
+
+/* Card Tags */
+.card-tag {
+}
