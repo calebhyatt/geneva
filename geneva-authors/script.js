@@ -1,81 +1,109 @@
-$(document).ready(function () {
-  $.getJSON("./data.json", function (initialData) {
-    $("#filter-keyword").on("keyup", function () {
+$(document).ready(() => {
+  $.getJSON("./data.json", (initialData) => {
+    const listWrapper = $("#results");
+    const paginationWrapper = $("#pagination");
+    var currentPage = 1;
+    var rowsPerPage = Number($("#maxRows").val());
+
+    $("#filter-keyword").on("keyup", () => {
       if (
         $("#filter-keyword").val().length === 0 ||
         $("#filter-keyword").val().length >= 3
       ) {
-        paginateResults();
+        initialize();
       }
     });
-    $("#filter-year").on("change", function () {
-      paginateResults();
+    $("#filter-year").on("change", () => {
+      initialize();
     });
-    $("#maxRows").on("change", function () {
-      paginateResults();
+    $("#maxRows").on("change", () => {
+      rowsPerPage = Number($("#maxRows").val());
+      initialize(1);
     });
 
-    paginateResults();
+    initialize(1);
+
+    function initialize(newIndex) {
+      if (!newIndex) newIndex = Number($(".active")[0].innerHTML);
+      currentPage = newIndex;
+
+      listWrapper.children().remove();
+      paginationWrapper.children().remove();
+
+      paginateResults();
+
+      let page_count = Math.ceil(initialData.length / rowsPerPage);
+
+      let firstButton = document.createElement("button");
+      firstButton.innerText = "<<";
+      let lastButton = document.createElement("button");
+      lastButton.innerText = ">>";
+      let previousButton = document.createElement("button");
+      previousButton.innerText = "<";
+      let nextButton = document.createElement("button");
+      nextButton.innerText = ">";
+
+      firstButton.addEventListener("click", () => {
+        initialize(1);
+      });
+      lastButton.addEventListener("click", () => {
+        initialize(page_count - 1);
+      });
+      previousButton.addEventListener("click", () => {
+        initialize(minOne(Number($(".active")[0].innerHTML) - 1));
+      });
+      nextButton.addEventListener("click", () => {
+        initialize(minOne(Number($(".active")[0].innerHTML) + 1));
+      });
+
+      paginationWrapper.append(firstButton);
+      paginationWrapper.append(previousButton);
+
+      for (let i = 1; i < page_count; i++) {
+        if (i >= minZero(newIndex - 2) && i <= minZero(newIndex + 2)) {
+          let pageButton = document.createElement("button");
+          pageButton.innerText = i;
+
+          pageButton.addEventListener("click", () => {
+            initialize(i);
+          });
+
+          if (i == newIndex) pageButton.classList.add("active");
+          paginationWrapper.append(pageButton);
+        }
+      }
+
+      paginationWrapper.append(nextButton);
+      paginationWrapper.append(lastButton);
+    }
 
     function paginateResults() {
-      $("#results tbody").html();
-      $("#results tbody").children().remove();
+      listWrapper.children().remove();
 
-      var trNum = 0;
-      var maxRows = parseInt($("#maxRows").val());
-      var totalRows = initialData.length;
+      let start = rowsPerPage * currentPage;
+      let end = start + rowsPerPage;
+      let paginatedItems = initialData.slice(start, end);
 
-      let values = [];
-      values.push($("#filter-keyword").val());
-      values.push($("#filter-year").val());
+      for (let i = 0; i < paginatedItems.length; i++) {
+        let item = paginatedItems[i];
 
-      let author,
-        count = 0;
-      for (const i in initialData) {
-        author = initialData[i];
-
-        console.log(author);
-        console.log(values[0]);
-
-        if (
-          author["Title"].includes(values[0]) ||
-          author["First_Name"].includes(values[0]) ||
-          author["Last_Name"].includes(values[0]) ||
-          author["Publisher"].includes(values[0]) ||
-          (Number(author["First_Name"]) >= values[1] &&
-            Number(author["First_Name"]) <= values[1] + 9)
-        ) {
-          count++;
-
-          $("#results tbody").append(`
-          <tr>
-            <td>${highlight(author["First_Name"])} ${highlight(
-            author["Last_Name"]
-          )}</td>
-            <td class="tr-odd">${highlight(author["Title"])}</td>
-            <td>${highlight(author["Publisher"])}</td>
-            <td class="tr-odd">${highlight(author["Publish_Date"])}</td>
-          </tr>
+        listWrapper.append(`
+          <div class="item">
+            <p><b>Title:</b> ${item["Title"]}</p>
+            <p><b>Author:</b> ${item["First_Name"]} ${item["Last_Name"]}</p>
+          </div>
         `);
-        }
-
-        $("#count").html(`Count: ${count}`);
-
-        function highlight(inputText) {
-          inputText = String(inputText);
-          var index = inputText.indexOf(values[0]);
-
-          if (index >= 0) {
-            inputText =
-              inputText.substring(0, index) +
-              "<span class='highlight'>" +
-              inputText +
-              "</span>";
-          }
-
-          return inputText;
-        }
       }
+    }
+
+    function minZero(num) {
+      if (num < 0) num = 0;
+      return num;
+    }
+
+    function minOne(num) {
+      if (num < 1) num = 1;
+      return num;
     }
 
     // The function that parses the URL into the search bar.

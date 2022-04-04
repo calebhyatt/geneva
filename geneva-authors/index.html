@@ -6,12 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Geneva Authors Search</title>
     <link rel="stylesheet" href="filter-styles.css" />
+    <link rel="stylesheet" href="filter-authors.css" />
     <link rel="stylesheet" href="fontawesome.css" />
     <link rel="stylesheet" href="skeleton.css" />
-    <link
-      rel="stylesheet"
-      href="https://pagination.js.org/dist/2.0.7/pagination.css"
-    />
 
     <style>
       .hightlight {
@@ -59,9 +56,8 @@
         </form>
       </div>
       <h1 class="title-header">All Authors and Books</h1>
-      <div class="container">
-        <div>
-          <h4 id="count">Count:</h4>
+      <div id="results-container">
+        <div id="display">
           <h4>Amount to Display</h4>
           <select name="state" id="maxRows">
             <option value="5">5</option>
@@ -72,18 +68,9 @@
             <option value="100">100</option>
           </select>
         </div>
-        <table id="results" class="u-full-width">
-          <thead>
-            <tr>
-              <td>Author</td>
-              <td class="tr-odd">Book Title</td>
-              <td>Publisher</td>
-              <td class="tr-odd">Year Published</td>
-            </tr>
-          </thead>
-          <tbody></tbody>
-        </table>
+        <div class="pagenumbers" id="pagination"></div>
       </div>
+      <div id="results" class="list"></div>
     </div>
 
     <script src="https://code.jquery.com/jquery-1.7.2.min.js"></script>

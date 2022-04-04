@@ -1,0 +1,71 @@
+#results-container,
+#display {
+  display: flex;
+}
+
+#display h4 {
+  width: 150px;
+  align-self: center;
+}
+
+#results div:nth-of-type(even) {
+  background-color: lightgray;
+}
+
+.list {
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  margin-top: 25px;
+}
+
+.list .item {
+  padding: 15px;
+  border-bottom: 1px solid #ccc;
+}
+
+.list .item:last-of-type {
+  border-bottom: none;
+}
+
+.list .item:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.pagenumbers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagenumbers button {
+  width: 50px;
+  height: 50px;
+
+  appearance: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+
+  background-color: #686868;
+
+  margin: 5px;
+  transition: 0.4s;
+
+  color: #fff;
+  font-size: 18px;
+}
+
+.pagenumbers button:hover {
+  background-color: #daaf48;
+}
+
+.pagenumbers button.disabled:hover {
+  background-color: #686868;
+}
+
+.pagenumbers button.active {
+  background-color: #daaf48;
+  box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
