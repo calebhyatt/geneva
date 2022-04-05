@@ -7,7 +7,7 @@ $(document).ready(() => {
 
     $("#filter-keyword").on("keyup", () => {
       if (
-        $("#filter-keyword").val().length === 0 ||
+        $("#filter-keyword").val().length == 0 ||
         $("#filter-keyword").val().length >= 3
       ) {
         initialize();
@@ -24,31 +24,25 @@ $(document).ready(() => {
     initialize(1);
 
     function initialize(newIndex) {
-      if (!newIndex) newIndex = Number($(".active")[0].innerHTML);
+      if (!newIndex) {
+        if (Number($(".active")[0]))
+          newIndex = Number($(".active")[0].innerHTML);
+        else newIndex = 1;
+      }
       currentPage = newIndex;
 
+      $("body").find(".highlight").removeClass("highlight");
       listWrapper.children().remove();
       paginationWrapper.children().remove();
 
-      paginateResults();
+      const resultCount = paginateResults();
+      var pageCount = minOne(Math.ceil(resultCount / rowsPerPage));
 
-      let page_count = Math.ceil(initialData.length / rowsPerPage);
-
-      let firstButton = document.createElement("button");
-      firstButton.innerText = "<<";
-      let lastButton = document.createElement("button");
-      lastButton.innerText = ">>";
       let previousButton = document.createElement("button");
-      previousButton.innerText = "<";
+      previousButton.innerHTML = `<i class="fa-solid fa-angle-left"></i> Back`;
       let nextButton = document.createElement("button");
-      nextButton.innerText = ">";
+      nextButton.innerHTML = `Next <i class="fa-solid fa-angle-right"></i>`;
 
-      firstButton.addEventListener("click", () => {
-        initialize(1);
-      });
-      lastButton.addEventListener("click", () => {
-        initialize(page_count - 1);
-      });
       previousButton.addEventListener("click", () => {
         initialize(minOne(Number($(".active")[0].innerHTML) - 1));
       });
@@ -56,10 +50,17 @@ $(document).ready(() => {
         initialize(minOne(Number($(".active")[0].innerHTML) + 1));
       });
 
-      paginationWrapper.append(firstButton);
       paginationWrapper.append(previousButton);
 
-      for (let i = 1; i < page_count; i++) {
+      if (newIndex >= 4) {
+        let emptyButton = document.createElement("button");
+        emptyButton.innerText = "...";
+        emptyButton.disabled = true;
+
+        paginationWrapper.append(emptyButton);
+      }
+
+      for (let i = 1; i < pageCount || i == 1; i++) {
         if (i >= minZero(newIndex - 2) && i <= minZero(newIndex + 2)) {
           let pageButton = document.createElement("button");
           pageButton.innerText = i;
@@ -73,8 +74,15 @@ $(document).ready(() => {
         }
       }
 
+      if (newIndex < pageCount - 3) {
+        let emptyButton = document.createElement("button");
+        emptyButton.innerText = "...";
+        emptyButton.disabled = true;
+
+        paginationWrapper.append(emptyButton);
+      }
+
       paginationWrapper.append(nextButton);
-      paginationWrapper.append(lastButton);
     }
 
     function paginateResults() {
@@ -83,17 +91,53 @@ $(document).ready(() => {
       let start = rowsPerPage * currentPage;
       let end = start + rowsPerPage;
       let paginatedItems = initialData.slice(start, end);
+      let results = [];
 
-      for (let i = 0; i < paginatedItems.length; i++) {
-        let item = paginatedItems[i];
+      for (let i = 0; i < initialData.length; i++) {
+        let item = initialData[i];
+        let keyword = $("#filter-keyword").val().toLowerCase();
+        let year = Number($("#filter-year").val());
+        let publishDate = Number(String(item["Publish_Date"]).substring(0, 4));
 
-        listWrapper.append(`
-          <div class="item">
-            <p><b>Title:</b> ${item["Title"]}</p>
-            <p><b>Author:</b> ${item["First_Name"]} ${item["Last_Name"]}</p>
-          </div>
-        `);
+        if (
+          (item["Title__1"].toLowerCase().includes(keyword) ||
+            item["First_Name"].toLowerCase().includes(keyword) ||
+            item["Last_Name"].toLowerCase().includes(keyword) ||
+            item["Publisher"].toLowerCase().includes(keyword)) &&
+          (year == "" || (publishDate < year + 9 && publishDate > year))
+        ) {
+          results.push(item);
+
+          if (i < paginatedItems.length) {
+            listWrapper.append(`
+              <div class="item">
+                <p><b>Title:</b> ${item["Title__1"]}</p>
+                <p><b>Author:</b> ${item["First_Name"]} ${item["Last_Name"]}</p>
+                <p><b>Publisher:</b> ${item["Publisher"]}</p>
+                <p><b>Published:</b> ${item["Publish_Date"]}</p>
+              </div>
+            `);
+          }
+        }
       }
+
+      if ($("#filter-keyword").val() !== "") {
+        highlightText($("#filter-keyword").val().toLowerCase());
+      }
+
+      return results.length;
+    }
+
+    function highlightText(input) {
+      let filter = new RegExp(input, "ig");
+      let replacement = `<span class="highlight">${input}</span>`;
+
+      $(".item p").each((index, value) => {
+        $(".item p")[index].innerHTML = value.innerHTML.replaceAll(
+          filter,
+          replacement
+        );
+      });
     }
 
     function minZero(num) {

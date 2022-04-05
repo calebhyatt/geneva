@@ -1,3 +1,5 @@
+/* Pagination Styles */
+
 #results-container,
 #display {
   display: flex;
@@ -40,9 +42,6 @@
 }
 
 .pagenumbers button {
-  width: 50px;
-  height: 50px;
-
   appearance: none;
   border: none;
   outline: none;
@@ -50,15 +49,24 @@
 
   background-color: #686868;
 
-  margin: 5px;
+  padding: 20px 25px;
   transition: 0.4s;
 
   color: #fff;
   font-size: 18px;
+
+  display: flex;
+  margin: auto;
+  gap: 5px;
 }
 
 .pagenumbers button:hover {
   background-color: #daaf48;
+}
+
+.pagenumbers button:disabled:hover {
+  background-color: #686868;
+  cursor: default;
 }
 
 .pagenumbers button.disabled:hover {
@@ -68,4 +76,16 @@
 .pagenumbers button.active {
   background-color: #daaf48;
   box-shadow: inset 0px 0px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Highlight Styles */
+
+.highlight {
+  background: #daaf48;
+}
+
+/* Misc Styles */
+
+.tr-odd {
+  background-color: #ddd;
 }
