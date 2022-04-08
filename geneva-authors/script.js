@@ -1,5 +1,16 @@
+/* Links
+
+Production: https://www.geneva.edu/alumni/authors/assets/data.json
+Testing: ./data.json
+
+*/
+
 $(document).ready(() => {
   $.getJSON("./data.json", (initialData) => {
+    // Production
+    // fetch("https://www.geneva.edu/alumni/authors/assets/data.json")
+    //   .then((res) => res.json())
+    //   .then((initialData) => {
     const listWrapper = $("#results");
     const paginationWrapper = $("#pagination");
     var currentPage = 1;
@@ -18,10 +29,10 @@ $(document).ready(() => {
     });
     $("#maxRows").on("change", () => {
       rowsPerPage = Number($("#maxRows").val());
-      initialize(1);
+      initialize();
     });
 
-    initialize(1);
+    initialize();
 
     function initialize(newIndex) {
       if (!newIndex) {
@@ -31,7 +42,7 @@ $(document).ready(() => {
       }
       currentPage = newIndex;
 
-      $("body").find(".highlight").removeClass("highlight");
+      // $("body").find(".highlight").removeClass("highlight");
       listWrapper.children().remove();
       paginationWrapper.children().remove();
 
@@ -86,7 +97,7 @@ $(document).ready(() => {
     }
 
     function paginateResults() {
-      listWrapper.children().remove();
+      // listWrapper.children().remove();
 
       let start = rowsPerPage * currentPage;
       let end = start + rowsPerPage;
@@ -122,22 +133,10 @@ $(document).ready(() => {
       }
 
       if ($("#filter-keyword").val() !== "") {
-        highlightText($("#filter-keyword").val().toLowerCase());
+        $("body").highlight(String($("#filter-keyword").val()));
       }
 
       return results.length;
-    }
-
-    function highlightText(input) {
-      let filter = new RegExp(input, "ig");
-      let replacement = `<span class="highlight">${input}</span>`;
-
-      $(".item p").each((index, value) => {
-        $(".item p")[index].innerHTML = value.innerHTML.replaceAll(
-          filter,
-          replacement
-        );
-      });
     }
 
     function minZero(num) {
